@@ -27,9 +27,17 @@ for (var i in songs){
 }
 */
 
+/* debug
+var counter = 0;
+var reverce = false;
+*/
 function loadApi(){
 
   var dataUrl = "http://192.168.1.20:8080/api/getCSC";
+  /* debug
+  if(counter < 15 && !reverce ){ counter++; }else{ reverce = true; }
+  if(counter > 0 && reverce ){ counter--; }else{ reverce = false; }
+  */
 
   var req = new XMLHttpRequest({mozSystem: true});
   req.open('GET', dataUrl, true);
@@ -53,9 +61,12 @@ function dataSuccess(data){
     $("#statusMark").addClass("active");
     $("#bigButton").removeClass("connecting");
     $("#bigButton").addClass("player");
+    /*debug
+    $("#resData").text(counter);
+    if(counter >= 5 ){
+    */
     $("#resData").text(data.speed);
     if(data.speed > 2 ){
-    //if(data.speed >= 0 ){
         playSound();
 
     }else{
